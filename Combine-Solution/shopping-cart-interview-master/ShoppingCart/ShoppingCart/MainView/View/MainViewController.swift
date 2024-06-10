@@ -46,6 +46,7 @@ class MainViewController: UIViewController {
         setupTableView()
         bindViewModel()
         setupSnapshot()
+   //     viewModel.fetchAllProducts()
     }
 
     private func setupSnapshot() {
@@ -79,12 +80,14 @@ class MainViewController: UIViewController {
 private extension MainViewController {
     func bindViewModel() {
             viewModel.$cellViewModels
+            .receive(on: DispatchQueue.main)
                 .sink { [weak self] _ in
                     self?.setupSnapshot()
                 }
                 .store(in: &cancellables)
             
             viewModel.$totalPrice
+            .receive(on: DispatchQueue.main)
                 .sink { [weak self] totalPrice in
                     if let sumCell = self?.tableView.visibleCells.compactMap({ $0 as? SumTableViewCell }).first {
                         sumCell.bind(totalPrice: totalPrice)
