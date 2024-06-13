@@ -14,9 +14,9 @@
 		169A0A1C2C124E85001B0BE7 /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169A0A1B2C124E85001B0BE7 /* ClientError.swift */; };
 		169A0A1E2C124EDA001B0BE7 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169A0A1D2C124EDA001B0BE7 /* ProductService.swift */; };
 		169A0A212C124FFA001B0BE7 /* ProductResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169A0A202C124FFA001B0BE7 /* ProductResponse.swift */; };
+		169A0A2F2C17923A001B0BE7 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169A0A2E2C17923A001B0BE7 /* MainViewModelTests.swift */; };
 		16B61B842BF4B38300EB644D /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B61B832BF4B38300EB644D /* MainViewModel.swift */; };
 		16B61B872BF4B3DB00EB644D /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B61B862BF4B3DB00EB644D /* Product.swift */; };
-		16B61B892BF4B7C700EB644D /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B61B882BF4B7C700EB644D /* CartItem.swift */; };
 		16D8BF292C11006000EB9CB0 /* ProductTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D8BF282C11006000EB9CB0 /* ProductTableViewCellViewModel.swift */; };
 		CC516C862BA47E4100B5C260 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CC516C852BA47E4100B5C260 /* RxCocoa */; };
 		CC516C882BA47E4100B5C260 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CC516C872BA47E4100B5C260 /* RxSwift */; };
@@ -56,9 +56,9 @@
 		169A0A1B2C124E85001B0BE7 /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 		169A0A1D2C124EDA001B0BE7 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		169A0A202C124FFA001B0BE7 /* ProductResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponse.swift; sourceTree = "<group>"; };
+		169A0A2E2C17923A001B0BE7 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
 		16B61B832BF4B38300EB644D /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		16B61B862BF4B3DB00EB644D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		16B61B882BF4B7C700EB644D /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
 		16D8BF282C11006000EB9CB0 /* ProductTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		CC82952C2BAB8A9C00D49D98 /* app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app.png; sourceTree = "<group>"; };
 		CC8AE43F2BA8884B00C59153 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
@@ -141,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				16B61B862BF4B3DB00EB644D /* Product.swift */,
-				16B61B882BF4B7C700EB644D /* CartItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				CCB178062BA443E000E91ED1 /* ShoppingCartTests.swift */,
+				169A0A2E2C17923A001B0BE7 /* MainViewModelTests.swift */,
 			);
 			path = ShoppingCartTests;
 			sourceTree = "<group>";
@@ -364,7 +364,6 @@
 				16B61B872BF4B3DB00EB644D /* Product.swift in Sources */,
 				CCB177F42BA443DF00E91ED1 /* MainViewController.swift in Sources */,
 				CC8AE4402BA8884B00C59153 /* UITableViewCell+Extension.swift in Sources */,
-				16B61B892BF4B7C700EB644D /* CartItem.swift in Sources */,
 				CCE2D8072BA878E000546945 /* SumTableViewCell.swift in Sources */,
 				169A0A212C124FFA001B0BE7 /* ProductResponse.swift in Sources */,
 				CCB177F02BA443DF00E91ED1 /* AppDelegate.swift in Sources */,
@@ -380,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCB178072BA443E000E91ED1 /* ShoppingCartTests.swift in Sources */,
+				169A0A2F2C17923A001B0BE7 /* MainViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

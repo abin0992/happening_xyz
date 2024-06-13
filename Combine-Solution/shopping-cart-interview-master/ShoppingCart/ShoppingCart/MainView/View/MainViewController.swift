@@ -46,7 +46,7 @@ class MainViewController: UIViewController {
         setupTableView()
         bindViewModel()
         setupSnapshot()
-   //     viewModel.fetchAllProducts()
+        setupNavigationBar()
     }
 
     private func setupSnapshot() {
@@ -95,4 +95,14 @@ private extension MainViewController {
                 }
                 .store(in: &cancellables)
         }
+    
+    func setupNavigationBar() {
+        let purchaseButton = UIBarButtonItem(title: "Purchase", style: .done, target: self, action: #selector(purchaseButtonTapped))
+        purchaseButton.isEnabled = viewModel.totalPrice > 0
+        navigationItem.rightBarButtonItem = purchaseButton
+    }
+
+    @objc func purchaseButtonTapped() {
+        viewModel.makePurchaseProductsRequest()
+    }
 }

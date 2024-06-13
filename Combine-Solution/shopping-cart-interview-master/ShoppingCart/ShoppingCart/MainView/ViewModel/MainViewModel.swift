@@ -11,8 +11,6 @@ import Combine
 class MainViewModel: ObservableObject {
 
     @Published var cellViewModels: [ProductTableViewCellViewModel] = []
-    @Published var allItems: [Product] = []
-    @Published var cartItems: [CartItem] = []
     @Published var totalPrice: Double = 0.0
 
     private var cancellables = Set<AnyCancellable>()
@@ -33,11 +31,29 @@ class MainViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-}
 
-private extension MainViewModel {
+    func setupBindings() {
+        cellViewModels.forEach { cellViewModel in
+            cellViewModel.addItemAction
+                .sink { [weak self] in
+                    self?.updateTotalPrice()
+                }
+                .store(in: &cancellables)
 
-    func fetchProducts() -> AnyPublisher<[Product], Error> {
+            cellViewModel.removeItemAction
+                .sink { [weak self] in
+                    self?.updateTotalPrice()
+                }
+                .store(in: &cancellables)
+        }
+        updateTotalPrice()
+    }
+
+    func updateTotalPrice() {
+        totalPrice = cellViewModels.reduce(0) { $0 + Double($1.count) * $1.price }
+    }
+
+    private func fetchProducts() -> AnyPublisher<[Product], Error> {
         guard let url = URL(string: "https://apache.superology.dev/interview/getAllProducts") else {
             return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
         }
@@ -56,26 +72,52 @@ private extension MainViewModel {
             }
             .eraseToAnyPublisher()
     }
+}
 
-    func setupBindings() {
-        cellViewModels.forEach { cellViewModel in
-            cellViewModel.addItemAction
-                .sink { [weak self] in
-                    self?.updateTotalPrice()
-                }
-                .store(in: &cancellables)
-
-            cellViewModel.removeItemAction
-                .sink { [weak self] in
-                    self?.updateTotalPrice()
-                }
-                .store(in: &cancellables)
+extension MainViewModel {
+    func createJSONPayload() -> Data? {
+        let products = cellViewModels.map { viewModel in
+            [
+                "id": viewModel.id.uuidString,
+                "amount": viewModel.count
+            ]
         }
-
-        updateTotalPrice()
+        
+        let payload: [String: Any] = ["products": products]
+        
+        guard JSONSerialization.isValidJSONObject(payload) else {
+            print("Invalid JSON object")
+            return nil
+        }
+        
+        return try? JSONSerialization.data(withJSONObject: payload, options: [])
     }
+}
 
-    func updateTotalPrice() {
-        totalPrice = cellViewModels.reduce(0) { $0 + Double($1.count) * $1.price }
+extension MainViewModel {
+    func makePurchaseProductsRequest() {
+        guard let url = URL(string: "https://apache.superology.dev/interview/purchaseProducts") else { return }
+        guard let jsonData = createJSONPayload() else { return }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error making POST request: \(error)")
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                print("Error with the response, unexpected status code: \(String(describing: response))")
+                return
+            }
+
+            if let data = data {
+                print("Response data: \(String(data: data, encoding: .utf8) ?? "")")
+            }
+        }.resume()
     }
 }

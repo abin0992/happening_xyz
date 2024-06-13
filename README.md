@@ -1,3 +1,4 @@
+
 # This is **Super shopping cart simulator** app!
 
 Welcome to your live coding assignment of **Super Shopping cart simulator**.
@@ -102,3 +103,7 @@ Error - invalid request
   ```
 
 <img src="https://github.com/superology-ios/shopping-cart-interview/assets/97449072/e507bcdd-f94b-437a-9aea-5e91d493bd9a" alt="app" width="300">
+
+iOS live coding challenge, the interviewers expect to finish this in 90 minutes
+happening.xyz
+superbet 
