@@ -1,7 +1,7 @@
 
 # This is **Super shopping cart simulator** app!
 
-Welcome to your live coding assignment of **Super Shopping cart simulator**.
+Welcome to your live coding assignment of **Super Shopping cart simulator** (for happening.xyz (superbet)).
 We will hang out for about 2 hours, so let's have fun.
 
 We just came from a meeting with product managers and they need to have live
